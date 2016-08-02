@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Hangman Game</title>
+
+     
+ 
+</head>
+
+<body>
+    <h1>Who's That Pokemon</h1>
+    
+    <div id="silImage"></div>
+    <div id="audio"></div>
+    <div id="whosthatpokemon"></div>
+    
+    <p></p>
+    <button onclick="silhouetteSong()">Try it</button>
+
+ <script>
+ function myFunction () {
+    audioHTML = '<audio src="https://courses.edx.org/asset-v1:W3Cx+HTML5.0x+1T2016+type@asset+block@splash.wav" type="audio/wav" controls autoplay></audio>';
+     document.getElementById("audio").innerHTML = audioHTML;      
+}
+</script>   
+</body>
+</html>

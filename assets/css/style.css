@@ -1,0 +1,82 @@
+@import url("reset.css");
+
+* {
+	margin: 0;
+}
+html body {
+	height: 100%;
+	overflow: auto;
+}
+
+.page-wrap {
+	min-height: 100%;
+	/*equal to footer height */
+	margin-bottom: -40px;
+}
+
+.page-wrap:after {
+	content: "";
+	display: block;
+}
+
+.site-footer, .page-wrap:after {
+	/*must be same height as footer */
+	height: 40px;
+}
+
+.site-footer {
+	text-align: center;
+	overflow: hidden;
+}
+
+div.row {
+	margin: 20px 0;
+	border: 2px solid white;
+}
+
+.container-fluid {
+	width: 100%;
+	max-width: 960px;
+	margin: 0 auto;
+	clear: both;
+}
+
+.container {
+	width: 100%;
+	max-width: 960px;
+	margin: 0 auto;
+	clear: both;
+}
+
+
+.well {
+	margin-top: 30px;
+	border: 2px solid white;
+}
+
+#playImage {
+	width: 50%;
+}
+
+#silImage {
+	width: 100%;
+}
+
+#gifImage {
+	width: 100%;
+}
+footer {	
+	text-align: center;
+	background: #4e5d6c;
+	vertical-align: baseline;
+	clear: both;
+	width: 100%;
+
+}
+
+.footer-info {
+	font-size: 10px;
+	margin: 0;
+	padding: 10px;
+	line-height: 15px;	
+}
