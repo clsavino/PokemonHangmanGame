@@ -58,12 +58,15 @@ div.row {
 	width: 50%;
 }
 
-#silImage {
+.imgSil {
 	width: 100%;
 }
 
 #gifImage {
 	width: 100%;
+}
+.gameLoc, .lettersLoc {
+	text-align: center;
 }
 footer {	
 	text-align: center;

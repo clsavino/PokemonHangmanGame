@@ -1,3 +1,5 @@
+window.onload = function() {
+
 var pokemon = [
 	{
 		'name': 'pikachu',
@@ -21,7 +23,7 @@ var pokemon = [
 	},
 	{
 		'name': ['snorlax'],
-		'jpgFile'File: "assets/images/snorlax.jpg",
+		'jpgFile': "assets/images/snorlax.jpg",
 		'gifFile': "assets/images/snorlax.gif"
 	},	
 	{
@@ -61,30 +63,21 @@ var pokemon = [
 	}];
 
 
-function startMsg() {
-	// Tells user to guess a letter in the Pokemon's name
-	// Display "Wins" followed by number of wins
-	// Display "Current Word" and blanks
-	// Display "Number of guesses remaining"
-	// Display "Letters already guessed"
-	// Display Wins = 0
-
-	}
-}
-
  function silhouetteSong(round) {
- 	if round > 0 {
+ 	if (round > 0) {
  		moveGif();
  	}
- 	document.getElementById("silImage").innerHTML = "<img src=assets/images/pokemon.jpgFile>";
+ 	var imageSrc = pokemon[round].jpgFile;
+	document.getElementById("silImage").innerHTML = '<img src=' + imageSrc + '>';
  
  	document.getElementById('whosthatpokemon').innerHTML = '<audio id="whosthatpokemon" src="assets/audio/whosthatpokemon.mp3" type="audio/mp3" autoplay>';
-	 document.getElementById("audio").innerHTML = audioHTML; 
+
+	//.setAttribute('class', 'imgSil');
 }
 
  function displayWord() {
     
-    var pos = str.indexOf("letter");
+    //var pos = str.indexOf("letter");
 }
 
 function tallyWins () {
@@ -96,26 +89,50 @@ function updateGuesses (){
 }
 
 function displayGif (){
-	
+	//<img id="gifImage" src='assets/images/pikachu.gif'>	
 } 
+function moveGif (){
 
-function  () {
+}
+function playAgainMsg (){
 
 }
 
-//Declare Game Variables
-var round = 0;
+// Declare Game Variables
 
-//Display Start Message
-startMsg();
+
+var wins = 0;
+
+//var word = "_ _ _ _ _ _ _";
+var word = '<h1>_ _ _ _ _ _ _</h1>';
+
+var usedLetters = '<p>NONE</p>';
+var round = 0;
+silhouetteSong(round);
+// Display Pikachu silhouette & play song
+	// var imageSrc = pokemon[0].jpgFile;
+	// document.getElementById("silImage").innerHTML = '<img src=' + imageSrc + '>';
+ 
+ // 	document.getElementById('whosthatpokemon').innerHTML = '<audio id="whosthatpokemon" src="assets/audio/whosthatpokemon.mp3" type="audio/mp3" autoplay>';
+ // Set and Display wins, guesses left, and letters used
+ 	document.getElementById('wins').innerHTML = '<p>0</p>';
+ 	document.getElementById('guessesLeft').innerHTML = '<p>7</p>';
+	document.getElementById('lettersUsed').innerHTML = usedLetters; 	
+// Display first word blanks
+	document.getElementById('word').innerHTML = word;
+
+
 
 // Listen for key press 
 document.onkeyup = function(event) {
 	var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
-
-
-	displayGif();
+	displayWord();
+	
 	tallyWins();
+	displayGif();
+
 	round = 1;
 	playAgainMsg();
 } //end of event listener
+
+}//end of window.onload

@@ -46,23 +46,34 @@
 		  	<div class="col-sm-2">
 				<div class="well well-sm">
 				<section id="Silhouette"> 
-					<img id="silImage" src='assets/images/pikachu.jpg'>
-					
-					<audio id="whosthatpokemon" src="assets/audio/whosthatpokemon.mp3" type="audio/mp3" autoplay>
-        			</audio> 
+					<div id="silImage"></div>
+					<div id="whosthatpokemon"></div>
    				</section>
 				</div>	
 			</div>
 
 			<div class="col-sm-3">
 				<div class="well well-sm">
-				<section class='gameLoc'></section>
+				<section class='gameLoc'>
+					<p>PRESS A LETTER TO GUESS THE NAME</p>
+
+					<p>CURRENT WORD</p>
+					<div id="word"></div>
+
+					<p>WINS</p>
+					<div id="wins"></div>					
+				</section>
 				</div>	
 			</div>
 
 			<div class="col-sm-3">
 				<div class="well well-sm">
-				<section class='gameLoc'></section>
+				<section class='lettersLoc'>
+					<p>NUMBER OF GUESSES REMAINING</p>
+					<div id="guessesLeft"></div>
+					<p>LETTERS ALREADY USED</p>	
+					<p id="lettersUsed"></p>				
+				</section>
 				</div>	
 			</div>
 
@@ -75,7 +86,7 @@
 		<div class="row"> 
 			<div class="col-sm-1">
 				<div class="well well-sm">
-					<img id="gifImage" src='assets/images/pikachu.gif'>
+					<div id="gifImage"></div>	
 				</div>
 			</div>
 
@@ -129,6 +140,9 @@
 	<footer class="site-footer">
 	    <h6 class="footer-info">&copy;Copyright2016 Christi Savino</h6>
 	</footer>
+
+	
+		
 
 </body>
 </html> 
