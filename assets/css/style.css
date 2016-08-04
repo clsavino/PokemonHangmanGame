@@ -7,7 +7,12 @@ html body {
 	height: 100%;
 	overflow: auto;
 }
-
+p {
+	margin: 0 0 5px;
+}
+#red {
+	color: red;
+}
 .page-wrap {
 	min-height: 100%;
 	/*equal to footer height */
@@ -59,7 +64,7 @@ div.row {
 }
 
 .imgSil {
-	width: 100%;
+	width: 75%;
 }
 
 #gifImage {

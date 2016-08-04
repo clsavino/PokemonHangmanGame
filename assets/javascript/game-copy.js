@@ -73,7 +73,6 @@ var pokemon = [
 	var currentPokemon = "";
 	var currentWord = [];
 	var displayWord = "";
-	var posWord = 0;
 	var guesses = 7;
 	var gameOver = false;
 	var lettersStr = "";
@@ -149,31 +148,32 @@ function moveGif (){
 }
 
 function playAgainMsg (){
-
+	//display click to play again message
+	document.getElementById('button').innerHTML = '<p>Click to play a game of Hangman</p>';
 }
 
+	//var word = ['_','_','_','_','_','_','_'];// blanks for pokemon[0]
 	//Call the function to display the 1st pokemon and play the audio clip
 	silhouetteSong(round);
-
+	// Display Pikachu silhouette & play song
+		// var imageSrc = pokemon[0].jpgFile;
+		// document.getElementById("silImage").innerHTML = '<img src=' + imageSrc + '>';
+	 
+	 // 	document.getElementById('whosthatpokemon').innerHTML = '<audio id="whosthatpokemon" src="assets/audio/whosthatpokemon.mp3" type="audio/mp3" autoplay>';
 	 // Set and Display wins, guesses left, and letters used
 	 //Initial values for window.onload - wins=0, guessLeft=7, usedLetters=NONE
  	document.getElementById('wins').innerHTML = '<p>0</p>';
  	document.getElementById('guessesLeft').innerHTML = '<p>7</p>';
 	document.getElementById('lettersUsed').innerHTML = '<p>NONE</p>'; 	
-	
+	po
 // Display the current word in blanks
-
-	// for (var i=0; i<pokemon[round].name.length; i++) {
-	// 	currentWord[i] = '_';
-	// }
-	currentPokemon = pokemon[round].name;
- 	for (var i=0; i < currentPokemon.length; i++) {
+	for (var i=0; i<pokemon[round].name.length; i++) {
 		currentWord[i] = '_';
 	}
 	console.log('currentWord is ' + currentWord);
-	displayWord = currentWord.join(" ");
-	console.log('displayWord is ' + displayWord);
-	document.getElementById('pokemonName').innerHTML = '<h3>' + displayWord + '</h3>';
+	blanksWord = currentWord.join("");
+	console.log('blanksWord is ' + blanksWord);
+	document.getElementById('pokemonName').innerHTML = '<h1>' + blanksWord + '</h1>';
 	//document.getElementById('pokemonName').innerHTML = '<h1>' + blanksWord.join("") + '</h1>';
 
 // Listen for key press 
@@ -182,9 +182,9 @@ function playAgainMsg (){
 	userGuess = String.fromCharCode(event.keyCode).toLowerCase();
 	console.log('user guessed ' + userGuess);
 	guesses++;
-	posWord = currentPokemon.indexOf(userGuess);
+	posWord = pokemon[round].name.indexOf(userGuess);
 
-	console.log('posWord = ' + posWord);
+	console.log(posWord);
 
 	if (posWord > -1) {
 		displayWord(posWord);
@@ -197,8 +197,8 @@ function playAgainMsg (){
 		displayGif();
 		round++;
 		guesses = 7;
-		gameOver = false;
 		playAgainMsg();
+		gameOver = false;
 	}
 
 
