@@ -59,14 +59,24 @@ div.row {
 	border: 2px solid white;
 }
 
-#playImage {
+#playImage, #themeSong {
 	width: 50%;
 }
 
 .imgSil {
 	width: 75%;
 }
-
+img {
+	width: 100%;
+}
+.audio {
+	display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+}
 #gifImage {
 	width: 100%;
 }

@@ -9,11 +9,11 @@ var pokemon = [
 	{
 		'name': 'charmander',
 		'jpgFile': "assets/images/charmander.jpg",
-		'gifFile': "assets/images/pikcharmanderachu.gif"
+		'gifFile': "assets/images/charmander.gif"
 	},
 	{
 		'name': 'squirtle',
-		'jpgFile': "assets/images/squirtle.jpg",
+		'jpgFile': "assets/images/squirtle.png",
 		'gifFile': "assets/images/squirtle.gif"
 	},
 	{
@@ -23,7 +23,7 @@ var pokemon = [
 	},
 	{
 		'name': 'snorlax',
-		'jpgFile': "assets/images/snorlax.jpg",
+		'jpgFile': "assets/images/snorlax.png",
 		'gifFile': "assets/images/snorlax.gif"
 	},	
 	{
@@ -33,17 +33,17 @@ var pokemon = [
 	},		
 	{
 		'name': 'krabby',
-		'jpgFile': "assets/images/krabby.jpg",
+		'jpgFile': "assets/images/krabby.png",
 		'gifFile': "assets/images/krabby.gif"
 	},
 	{
 		'name': 'onix',
-		'jpgFile': "assets/images/onix.jpg",
+		'jpgFile': "assets/images/onix.png",
 		'gifFile': "assets/images/onix.gif"
 	},
 	{
 		'name': 'sandshrew',
-		'jpgFile': "assets/images/sandshrew.jpg",
+		'jpgFile': "assets/images/sandshrew.png",
 		'gifFile': "assets/images/sandshrew.gif"
 	},
 	{
@@ -58,12 +58,10 @@ var pokemon = [
 	},
 	{
 		'name': 'cubone',
-		'jpgFile': "assets/images/cubone.jpg",
+		'jpgFile': "assets/images/cubone.png",
 		'gifFile': "assets/images/cubone.gif"
 	}];
 	console.log(pokemon);
-
-	//var word = ['_','_','_','_','_','_','_'];// blanks for pokemon[0]
 
 	// Declare Game Variables
 	var userGuess = "";
@@ -73,14 +71,16 @@ var pokemon = [
 	var currentPokemon = "";
 	var currentWord = [];
 	var displayWord = "";
-	var posWord = 0;
-	var guesses = 7;
+	var usedIndex = 0;
+	var remainingGuesses = 7;
 	var gameOver = false;
 	var lettersStr = "";
-	var gifArray = ['gifImage0','gifImage1','gifImage2',
-				  'gifImage3','gifImage4','gifImage5',
-				  'gifImage6','gifImage7','gifImage8',
-				  'gifImage9','gifImage10','gifImage11'];
+	var lettersLeft = 0;
+	var gifArray = ['gifImage0','gifImage1','gifImage2','gifImage3','gifImage4','gifImage5','gifImage6','gifImage7','gifImage8','gifImage9','gifImage10','gifImage11'];
+	//declare "play again" msg
+	var playAgain = "<h4>Press Y to play again</h4>";
+	var reset = false;
+
 	console.log(userGuess);
 	console.log(wins); 
 	console.log(usedLetters); 
@@ -88,85 +88,124 @@ var pokemon = [
 	console.log(currentPokemon);
 	console.log(currentWord); 
 	console.log(displayWord);
-	console.log(guesses); 
+	console.log(usedIndex); 
 	console.log(gameOver); 
 	console.log(lettersStr);
+	console.log(lettersLeft)
 	console.log(gifArray);
-
+	console.log("=================================");
+	
  function silhouetteSong(round) {
- 	if (round > 0) {
- 		moveGif();
- 	}
+ 	//if (round > 0) { moveGif();}
+ 	// clear play again message, update guesses remaining and letters used
+ 	document.getElementById("playAgain").innerHTML = '<p></p>';
+ 	document.getElementById('guessesLeft').innerHTML = '<p>7</p>';
+	document.getElementById('lettersUsed').innerHTML = '<p>NONE</p>'; 
+
+	//display new pokemon
  	var imageSrc = pokemon[round].jpgFile;
  	console.log('imageSrc is ' + imageSrc);
 	document.getElementById("silImage").innerHTML = '<img src=' + imageSrc + '>';
  
  	document.getElementById('whosthatpokemon').innerHTML = '<audio id="whosthatpokemon" src="assets/audio/whosthatpokemon.mp3" type="audio/mp3" autoplay>';
+
  	currentPokemon = pokemon[round].name;
+ 	lettersLeft = currentPokemon.length;
  	for (var i=0; i < currentPokemon.length; i++) {
 		currentWord[i] = '_';
 	}
+	displayWord = currentWord.join(" ");
+	document.getElementById('pokemonName').innerHTML = '<h3>' + displayWord + '</h3>';
+
 	console.log('currentPokemon is ' + currentPokemon);
 	console.log('currentPokemon.length = ' + currentPokemon.length);
 	console.log('currentWord array is ' + currentWord);
+
+	console.log('displayWord is ' + displayWord);
+	
 	//.setAttribute('class', 'imgSil');
 }
 
- function displayWord(posWord) {
-    
- 	currentWord[posWord] = userGuess;
- 	displayWord = currentWord.join("");
-	document.getElementById('pokemonName').innerHTML = '<h1>' + displayWord + '</h1>';
+ function updateWord(posWord) {
+ 	if (!gameOver){
+	    for(var i=0; i < currentPokemon.length; i++) {
+	        if (currentPokemon[i] === userGuess) {
+	        	currentWord[i] = userGuess;
+	        	lettersLeft = lettersLeft - 1;
+	        }
+	    }
+	 	//currentWord[posWord] = userGuess;
+	 	displayWord = currentWord.join(" ");
+		document.getElementById('pokemonName').innerHTML = '<p>' + displayWord + '</p>';
+		
+		if (lettersLeft <= 0 ) {
+			gameOver = true;
+			wins++;
+			document.getElementById('wins').innerHTML = '<p>' + wins + '</p>';
+		}
+		console.log('wins = ' + wins);
+		console.log('letters left ' + lettersLeft);
+		console.log('gameOver ' + gameOver);
+		console.log("=================================");
+	} //end of if (!gameOver)	
 }
 
-function tallyWins () {
-	wins++;
-	document.getElementById('wins').innerHTML = '<p>' + wins + '</p>';
-}
-
-function updateGuesses (){
-	usedLetters = usedLetters.push(userGuess);
-	lettersStr = usedLetters.join("");
-	document.getElementById('lettersUsed').innerHTML = usedLetters.join("");
-	console.log('usedLetters = ' + usedLetters.join(""));
-	console.log('usedLetters = ' + usedLetters);
-	guesses--;
-	console.log('guesses = ' + guesses);
-	if (guesses = 0) {
-		gameOver = true;
+function updateGuesses() {
+	var	pos = usedLetters.indexOf(userGuess);
+	if (pos === -1) {
+		usedLetters[usedIndex] = userGuess;
+		usedIndex = usedIndex + 1;
+		remainingGuesses = remainingGuesses - 1;
 	}
+
+	//lettersStr = usedLetters.join(" ");
+	document.getElementById('lettersUsed').innerHTML = '<p>' + usedLetters + '</p>';
+	console.log('usedLetters = ' + usedLetters);
+	console.log('usedIndex = ' + usedIndex);	
+
+	document.getElementById('guessesLeft').innerHTML = '<p>' + remainingGuesses + '</p>';
+	console.log('remainingGuesses = ' + remainingGuesses);
+	//check to see if used all 7 guesses
+	if (remainingGuesses <= 0) {
+		gameOver = true;
+
+	}
+	console.log("=================================");
 }
 
-function displayGif (){
+function displayGif() {
 	var imageSrc = pokemon[round].gifFile;
 	document.getElementById("silImage").innerHTML = '<img src=' + imageSrc + '>';
 }
 
-function moveGif (){
+function moveGif() {
 	var imageSrc = pokemon[round].gifFile;
 	var gifLoc = gifArray[round];
 	document.getElementById(gifLoc).innerHTML = '<img src=' + imageSrc + '>';
 }
 
-function playAgainMsg (){
-
-}
-
-	//Call the function to display the 1st pokemon and play the audio clip
-	silhouetteSong(round);
-
-	 // Set and Display wins, guesses left, and letters used
-	 //Initial values for window.onload - wins=0, guessLeft=7, usedLetters=NONE
- 	document.getElementById('wins').innerHTML = '<p>0</p>';
+ function playAgainMsg() {
+ 	document.getElementById("playAgain").innerHTML = playAgain; 
  	document.getElementById('guessesLeft').innerHTML = '<p>7</p>';
 	document.getElementById('lettersUsed').innerHTML = '<p>NONE</p>'; 	
+	reset = true; //time to reset arrays and counters that are displayed (except wins)
+}
+
+
+
+	//Display wins = 0, Call the function to display the 1st pokemon and play the audio clip
+	document.getElementById('wins').innerHTML = '<p>0</p>';
+
+	silhouetteSong(round);
+	
+ // 	document.getElementById('wins').innerHTML = '<p>0</p>';
+ // 	document.getElementById('guessesLeft').innerHTML = '<p>7</p>';
+	// document.getElementById('lettersUsed').innerHTML = '<p>NONE</p>'; 	
 	
 // Display the current word in blanks
-
-	// for (var i=0; i<pokemon[round].name.length; i++) {
-	// 	currentWord[i] = '_';
-	// }
 	currentPokemon = pokemon[round].name;
+	lettersLeft = currentPokemon.length;
+	console.log('lettersLeft ' + lettersLeft);
  	for (var i=0; i < currentPokemon.length; i++) {
 		currentWord[i] = '_';
 	}
@@ -179,28 +218,46 @@ function playAgainMsg (){
 // Listen for key press 
 
     document.onkeyup = function(event) {
-	userGuess = String.fromCharCode(event.keyCode).toLowerCase();
-	console.log('user guessed ' + userGuess);
-	guesses++;
-	posWord = currentPokemon.indexOf(userGuess);
+	    if (gameOver) {
+			displayGif();
+			playAgainMsg();
+			gameOver = false;
+		}else {	
+			userGuess = String.fromCharCode(event.keyCode).toLowerCase();
+			console.log('user guessed ' + userGuess);
+			
+			if ((userGuess == 'y' ) && (reset)) { //user wants to play again
+				moveGif();
+				round++;
+				if (round != 12) {
+					console.log('round is ' + round);
+					usedLetters = []; //empty array
+					currentPokemon = "";
+					currentWord = [];
+					displayWord = "";
+					usedIndex = 0;
+					remainingGuesses = 7;
+					lettersStr = "";
+					lettersLeft = 0;
+					silhouetteSong(round);
+					reset = false;
+				}else {
+					document.getElementById("playAgain").innerHTML = '<p>ALL DONE WITH POKEMON HANGMAN</p>';
+				}	
 
-	console.log('posWord = ' + posWord);
+			} else {
+				// user still guessing letters
+				posWord = currentPokemon.indexOf(userGuess);
 
-	if (posWord > -1) {
-		displayWord(posWord);
-	} else {
-		updateGuesses();
-	}
+				console.log('posWord = ' + posWord);
 
-	if (gameOver) {
-		tallyWins();
-		displayGif();
-		round++;
-		guesses = 7;
-		gameOver = false;
-		playAgainMsg();
-	}
-
+				if (posWord > -1) {
+					updateWord(posWord);
+				} else {
+					updateGuesses();
+				}		
+			}//end of else
+		}//end of if
 
 } //end of event listener
 
