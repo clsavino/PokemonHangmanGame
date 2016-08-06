@@ -63,11 +63,15 @@ div.row {
 }
 
 #playImage, #themeSong {
-	width: 50%;
+	width: 75%;
 }
 
 img {
 	width: 100%;
+}
+figcaption {
+	display: flex;
+	flex-direction: column;
 }
 .audio {
 	display: -ms-flexbox;
@@ -76,6 +80,17 @@ img {
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
+}
+img#playImage {
+  transition:all 0.5s;
+}
+img#playImage:hover {
+  box-shadow: 15px 15px 20px rgba(0,0, 0, 0.4);
+  transform: scale(1.05);
+}
+audio:hover, audio:focus, audio:active {
+  box-shadow: 15px 15px 20px rgba(0,0, 0, 0.4);
+  transform: scale(1.05);
 }
 #gifImage {
 	width: 100%;
