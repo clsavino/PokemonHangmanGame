@@ -79,10 +79,13 @@ var remainingGuesses = 7;
 var gameOver = false;
 var lettersStr = "";
 var lettersLeft = 0;
-var playAgain = "<h4>Press Y to play again</h4>";
 var reset = false;
 var state = "stillPlaying";
-
+// Play Again? message
+var playAgain = "<h4>Press Y to play again</h4>";
+// audio element needed for controls
+var audioCntl = document.getElementById("themeSong");
+audioCntl.volume = 0.5;
 //set up page for a round of pokemon hangman
 // reset info displayed from last round
 // set state of game to "stillPlaying"
