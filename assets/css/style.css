@@ -81,25 +81,33 @@ figcaption {
     flex-direction: column;
 }
 img#playImage {
-  transition:all 0.5s;
+	transition:all 0.5s;
+
 }
 
 img#playImage:hover {
-  box-shadow: 15px 15px 20px rgba(0,0, 0, 0.4);
-  transform: scale(1.05);
+  	box-shadow: 15px 15px 20px rgba(0,0, 0, 0.4);
+  	transform: scale(1.1);
 }
 audio:hover, audio:focus, audio:active {
-  box-shadow: 15px 15px 20px rgba(0,0, 0, 0.4);
-  transform: scale(1.05);
+  	box-shadow: 15px 15px 20px rgba(0,0, 0, 0.4);
+  	transform: scale(1.05);
 }
-#gifImage {
+.gifImage {
 	width: 100%;
 }
+#silImage:hover {
+  	box-shadow: 15px 15px 20px rgba(0,0, 0, 0.4);
+  	transform: scale(1.25);
+ }
 .hideImg {
 	width: 100%;
 	opacity: 0.01;
 }
-
+.gifImage:hover {
+	box-shadow: 15px 15px 20px rgba(0,0, 0, 0.4);
+  	transform: scale(1.25);	
+}
 .gameLoc, .lettersLoc {
 	text-align: center;
 }

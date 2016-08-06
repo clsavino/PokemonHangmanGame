@@ -121,7 +121,7 @@ audioCntl.volume = 0.5;
 	remainingGuesses = 7;
 
 	//set game state to "stillPlaying"
-	state = "stillPlaying"
+	state = "stillPlaying";
 }
 
 // function used to display user's guess of letters in pokemon name. Doesn't execute code if gameOver
