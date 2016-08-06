@@ -1,5 +1,6 @@
 @import url("reset.css");
 
+
 * {
 	margin: 0;
 }
@@ -10,9 +11,7 @@ html body {
 p {
 	margin: 0 0 5px;
 }
-#red {
-	color: red;
-}
+
 .page-wrap {
 	min-height: 100%;
 	/*equal to footer height */
@@ -35,8 +34,9 @@ p {
 }
 
 div.row {
-	margin: 20px 0;
-	border: 2px solid white;
+	margin: 0;
+/*	margin: 20px 0;*/
+/*	border: 2px solid white;*/
 }
 
 .container-fluid {
@@ -53,6 +53,9 @@ div.row {
 	clear: both;
 }
 
+#playAgain h4 {
+	color: red;
+}
 
 .well {
 	margin-top: 30px;
@@ -60,14 +63,15 @@ div.row {
 }
 
 #playImage, #themeSong {
-	width: 50%;
-}
-
-.imgSil {
 	width: 75%;
 }
+
 img {
 	width: 100%;
+}
+figcaption {
+	display: flex;
+	flex-direction: column;
 }
 .audio {
 	display: -ms-flexbox;
@@ -77,9 +81,25 @@ img {
     -ms-flex-direction: column;
     flex-direction: column;
 }
+img#playImage {
+  transition:all 0.5s;
+}
+img#playImage:hover {
+  box-shadow: 15px 15px 20px rgba(0,0, 0, 0.4);
+  transform: scale(1.05);
+}
+audio:hover, audio:focus, audio:active {
+  box-shadow: 15px 15px 20px rgba(0,0, 0, 0.4);
+  transform: scale(1.05);
+}
 #gifImage {
 	width: 100%;
 }
+.hideImg {
+	width: 100%;
+	opacity: 0.01;
+}
+
 .gameLoc, .lettersLoc {
 	text-align: center;
 }
@@ -89,12 +109,28 @@ footer {
 	vertical-align: baseline;
 	clear: both;
 	width: 100%;
-
 }
-
+s
 .footer-info {
 	font-size: 10px;
 	margin: 0;
 	padding: 10px;
 	line-height: 15px;	
+}
+
+@media only screen and (max-width: 768px) {
+	.secondrow {
+	    width: 100%;
+	    display: flex;
+	    flex-direction: column;
+	}
+	.toprow {
+		width: 100%;
+	}
+	#playImage, #themeSong {
+		width: 100%;
+	}
+	.silImage {
+		width: 100%;
+	}
 }
