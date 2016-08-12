@@ -87,6 +87,7 @@ var playAgain = "<h4>Press Y to play again</h4>";
 // audio element needed for controls
 var audioCntl = document.getElementById("themeSong");
 audioCntl.volume = 0.5;
+
 //set up page for a round of pokemon hangman
 // reset info displayed from last round
 // set state of game to "stillPlaying"
@@ -102,7 +103,7 @@ audioCntl.volume = 0.5;
 	document.getElementById("silImage").innerHTML = '<img src=' + imageSrc + '>'; 
  	document.getElementById('whosthatpokemon').innerHTML = '<audio id="whosthatpokemon" src="assets/audio/whosthatpokemon.mp3" type="audio/mp3" autoplay>';
 
- // reset items for updateWord function
+    // reset items for updateWord function
  	currentWord = [];
  	displayWord = "";
  	alreadyUsed = [];
@@ -121,8 +122,6 @@ audioCntl.volume = 0.5;
 	usedLetters = []; //empty array
 	remainingGuesses = 7;
 
-	//set game state to "stillPlaying"
-	//state = "stillPlaying";
 }
 
 // function used to display user's guess of letters in pokemon name. Doesn't execute code if gameOver
@@ -205,13 +204,7 @@ function moveGif() {
 	displayWord = currentWord.join(" ");
 	document.getElementById('pokemonName').innerHTML = '<h3>' + displayWord + '</h3>';	
 	reset = true; //time to reset arrays and counters that are displayed (except wins)
-	/*
-	if (round === 12) {
-		state = "allDone";
-	} else {
-		state = "roundOverAndReset"; // waiting for user to enter "Y" to play again
-	}
-	*/
+
 }
 
 //**********************************
@@ -270,13 +263,7 @@ function moveGif() {
 		    	}	
 		    break;
 		}
-		/*
-		if (round === 12) { // display All done with Hangman
-			document.getElementById("playAgain").innerHTML = '<h4>ALL DONE WITH POKEMON HANGMAN</h4y>';
-			//document.getElementById("playAgain").innerHTML = '<p> </p>';
-			state = "allDone";
-		}
-		*/
+
 } //end of event listener
 
 }//end of window.onload
